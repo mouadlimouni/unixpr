@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+function ask {
+    echo "Combien de fichiers se trouvent dans ce répertoire ?"
+    read guess
+}
+
+correct=$(ls -1 | wc -l)
+
+echo "Devinez le nombre de fichiers dans ce répertoire."
+ask
+
+while [[ $guess -ne $correct ]]
+do
+    if [[ $guess -lt $correct ]]
+    then
+        echo "Trop bas"
+    else
+        echo "Trop haut"
+    fi
+    ask
+done
+
+echo "Bravo, $correct est la bonne réponse"
